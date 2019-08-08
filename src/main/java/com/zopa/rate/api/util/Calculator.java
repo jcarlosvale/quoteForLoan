@@ -1,7 +1,5 @@
 package com.zopa.rate.api.util;
 
-import com.zopa.rate.api.exceptions.RateValueException;
-
 public class Calculator {
 
     public double calculateEquivalentRate(double rate, double n) {
@@ -15,11 +13,6 @@ public class Calculator {
      * @return
      */
     public double calculatePaymentAmount(double totalAmount, double rate, int nPeriods) {
-        if (totalAmount <=0 || rate <= 0 || nPeriods <= 0) {
-            throw new RateValueException(
-                    String.format("The parameter value must be positive. " +
-                            "[totalAmount= %f, rate= %f, nPeriods= %d]",totalAmount, rate, nPeriods));
-        }
         double multiplicand = (Math.pow(1 + rate, nPeriods) * rate) / (Math.pow(1 + rate, nPeriods) - 1);
         return totalAmount * multiplicand;
     }
@@ -66,8 +59,6 @@ public class Calculator {
         }
 
         rate = isAnnualRate? rate*12 : rate;
-
-        //if (rate < 0 || rate > 250) throw new RateValueException("IRR value unexpected: " + rate);
 
         return rate;
     }
