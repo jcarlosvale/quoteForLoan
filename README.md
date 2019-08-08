@@ -8,7 +8,7 @@ interest on a monthly basis.
 * Java
 * Maven 
 
-##Example:
+## Example:
 
 Files: 
 
@@ -18,7 +18,7 @@ Run:
 
     java -jar target/ zopa-rate-0.0.1.jar market.csv 1000
     
-###Output
+### Output
 
 Requested amount: £1000 <br>
 Annual Interest Rate: 7.0% <br>
