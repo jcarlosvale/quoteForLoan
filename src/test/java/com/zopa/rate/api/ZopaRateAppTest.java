@@ -5,9 +5,9 @@ import org.junit.Test;
 import static org.junit.Assert.assertTrue;
 
 /**
- * Unit test for simple App.
+ * Unit test for simple ZopaRateApp.
  */
-public class AppTest 
+public class ZopaRateAppTest
 {
     @Test
     public void shouldAnswerWithTrue()
