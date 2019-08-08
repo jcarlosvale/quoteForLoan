@@ -42,16 +42,17 @@ public class ZopaRateService {
         return calculateQuote(selectedLender, loanAmount);
     }
 
-    private Quote calculateQuote(List<Lender> listLenders, Double loanAmount) {
+    private Quote calculateQuote(List<Lender> listLenders, double loanAmount) {
         Calculator calculator = new Calculator();
         double monthlyRepayment = 0;
 
         for(Lender lender : listLenders) {
+            double equivalentRate = calculator.calculateEquivalentRate(lender.getRate(), 1.0/12);
             monthlyRepayment += calculator
-                    .calculatePaymentAmount(lender.getAvailableAmount(), lender.getRate(), MAX_PAYMENTS);
+                    .calculatePaymentAmount(lender.getAvailableAmount(), equivalentRate, MAX_PAYMENTS);
         }
 
-        double rate = calculator.calculateIRR(MAX_PAYMENTS, monthlyRepayment, loanAmount, true);
+        double rate = calculator.calculateIRR(MAX_PAYMENTS, monthlyRepayment, -loanAmount, true);
 
         double repayment = MAX_PAYMENTS * monthlyRepayment;
 

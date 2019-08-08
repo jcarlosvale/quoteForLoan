@@ -4,6 +4,9 @@ import com.zopa.rate.api.exceptions.RateValueException;
 
 public class Calculator {
 
+    public double calculateEquivalentRate(double rate, double n) {
+        return Math.pow(1+rate,n) - 1;
+    }
     /**
      * Calculate the installment value
      * @param totalAmount
@@ -64,7 +67,7 @@ public class Calculator {
 
         rate = isAnnualRate? rate*12 : rate;
 
-        if (rate < 0 || rate > 250) throw new RateValueException("IRR value unexpected: " + rate);
+        //if (rate < 0 || rate > 250) throw new RateValueException("IRR value unexpected: " + rate);
 
         return rate;
     }

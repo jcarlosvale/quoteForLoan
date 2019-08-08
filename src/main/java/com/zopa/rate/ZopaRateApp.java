@@ -4,6 +4,8 @@ import com.zopa.rate.api.domain.Quote;
 import com.zopa.rate.api.exceptions.ParserException;
 import com.zopa.rate.api.service.ZopaRateService;
 
+import java.math.RoundingMode;
+
 public class ZopaRateApp
 {
     public static void main( String[] args ) throws ParserException {
@@ -24,14 +26,14 @@ public class ZopaRateApp
     private static void printInformation(Quote quote) {
         if (null != quote) {
             System.out.printf(
-                    "Requested amount: £%f\n" +
-                    "Annual Interest Rate: %f\n" +
-                    "Monthly repayment: £%f\n" +
-                    "Total repayment: £%f",
-                    quote.getRequestedAmount().doubleValue(),
-                    quote.getAnnualInterestRate().doubleValue(),
-                    quote.getMonthlyRepayment().doubleValue(),
-                    quote.getRepayment().doubleValue());
+                    "Requested amount: £%.2f\n" +
+                    "Annual Interest Rate: %.1f\n" +
+                    "Monthly repayment: £%.2f\n" +
+                    "Total repayment: £%.2f",
+                    quote.getRequestedAmount().setScale(2, RoundingMode.HALF_EVEN).doubleValue(),
+                    quote.getAnnualInterestRate().setScale(2, RoundingMode.HALF_EVEN).doubleValue()*100,
+                    quote.getMonthlyRepayment().setScale(2, RoundingMode.HALF_EVEN).doubleValue(),
+                    quote.getRepayment().setScale(2, RoundingMode.HALF_EVEN).doubleValue());
         } else {
             System.out.println("It is not possible to provide a quote.");
         }
