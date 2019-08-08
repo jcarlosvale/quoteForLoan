@@ -9,6 +9,11 @@ interest on a monthly basis.
 * Maven 
 
 ##Example:
+
+Files: 
+
+  Some examples in the _resources_ folder.
+  
 Run:
 
     java -jar target/ zopa-rate-0.0.1.jar market.csv 1000
